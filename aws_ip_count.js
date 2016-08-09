@@ -1,20 +1,19 @@
-var fs = require('fs');
-var request = require('request');
-var out = fs.createWriteStream('ip-ranges.json');
-var temp = "";
-var count16 = 0;
-var count17 = 0;
-var count18 = 0;
-var count19 = 0;
-var count20 = 0;
-var count21 = 0;
-var count22 = 0;
-var count23 = 0;
-var count24 = 0;
-var count25 = 0;
-var count26 = 0;
-
-var dll_stream = request('https://ip-ranges.amazonaws.com/ip-ranges.json')
+var fs = require('fs')
+   , request = require('request')
+   , out = fs.createWriteStream('ip-ranges.json')
+   , temp = ""
+   , count16 = 0
+   , count17 = 0
+   , count18 = 0
+   , count19 = 0
+   , count20 = 0
+   , count21 = 0
+   , count22 = 0
+   , count23 = 0
+   , count24 = 0
+   , count25 = 0
+   , count26 = 0
+   , dll_stream = request('https://ip-ranges.amazonaws.com/ip-ranges.json')
 .on('response', function(response){
   if (response.statusCode != 200){
   console.log("Incorrect ressource link, exiting now");
@@ -24,8 +23,6 @@ var dll_stream = request('https://ip-ranges.amazonaws.com/ip-ranges.json')
 dll_stream.on('finish', function () {
 jsondata = fs.readFileSync('ip-ranges.json');
 data = JSON.parse(jsondata);
-
-
 loop(0);
 });
 function loop(i){
@@ -43,7 +40,6 @@ function loop(i){
 			if (temp.match(/\/24/g)) count24++;
 			if (temp.match(/\/25/g)) count25++;
 			if (temp.match(/\/26/g)) count26++;
-
 			loop(i+1);
 		}
 		
